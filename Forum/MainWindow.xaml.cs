@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Data;
+using System.Data.Entity;
 
 namespace Forum
 {
@@ -24,32 +25,10 @@ namespace Forum
     public MainWindow()
     {
       InitializeComponent();
-    }
-
-    public void init()
-    {
-
-      using (var db = new ForumContext())
-      {
-        var user = db.User.FirstOrDefault(x => x.Id == 1);
-        MainWindow mw = new MainWindow();
-        mw.DataContext = user;
-        mw.Show();
-
-      }
-
-
-      using (var db = new ForumContext())
-      {
-        db.User.Add(new User()
-        {
-          Login = "ula",
-          Password = "qwerty",
-          Role = Role.Admin
-        });
-        
-        db.SaveChanges();
-      }
+      ForumContext context = new ForumContext();
+      LoginWindow LoginWindow = new LoginWindow(context);
+      LoginWindow.Show();
+      Hide();
     }
   }
 }

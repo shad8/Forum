@@ -9,9 +9,9 @@ namespace Data
 {
   public class ForumContext: DbContext
   {
-    public ForumContext():base("ForumContext")
+    public ForumContext() : base("ForumContext")
     {
-
+      Database.SetInitializer<ForumContext>(new ForumDBInitializer<ForumContext>());
     }
 
     public DbSet<User> User { get; set; }

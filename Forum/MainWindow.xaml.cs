@@ -26,9 +26,9 @@ namespace Forum
     {
       InitializeComponent();
       ForumContext context = new ForumContext();
-      LoginWindow LoginWindow = new LoginWindow();
+      LoginWindow LoginWindow = new LoginWindow(context);
       LoginWindow.Show();
-      this.Hide();
+      Hide();
     }
   }
 }

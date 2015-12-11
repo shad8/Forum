@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Data;
 
 namespace Forum
 {
@@ -19,9 +20,27 @@ namespace Forum
   /// </summary>
   public partial class LoginWindow : Window
   {
-    public LoginWindow()
+    ForumContext db;
+
+    public LoginWindow(ForumContext context)
     {
       InitializeComponent();
+      db = context;
+    }
+
+    private void loginButton_Click(object sender, RoutedEventArgs e)
+    {
+      string login = loginTextBox.Text;
+      string password = passwordTextBox.Text;
+
+      User user = db.User.Where(a => a.Login == login && a.Password == password).FirstOrDefault();
+      if(user != null)
+      {
+        MessageBox.Show("Logged");
+      } else
+      {
+        MessageBox.Show("You are not a member. Contact administrator to request permission.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+      }
     }
   }
 }

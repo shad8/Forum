@@ -31,7 +31,7 @@ namespace Forum
     private void loginButton_Click(object sender, RoutedEventArgs e)
     {
       string login = loginTextBox.Text;
-      string password = passwordTextBox.Text;
+      string password = passwordBox.Password;
 
       User user = db.User.Where(a => a.Login == login && a.Password == password).FirstOrDefault();
       if(user != null)

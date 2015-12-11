@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forum"
         mc:Ignorable="d"
-        Title="Forum IT" Height="319.173" Width="621.428">
+        Title="Forum IT" Height="319.173" Width="590">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
             <RowDefinition Height="31*"/>
         </Grid.RowDefinitions>
-        <Grid Height="268" Margin="10,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="593">
-            <Label x:Name="label" Content="Welcome on Forum ;)" HorizontalAlignment="Left" Margin="210,31,0,0" VerticalAlignment="Top" Width="204" FontSize="20"/>
-            <Label x:Name="loginLabel" Content="Login:" HorizontalAlignment="Left" Margin="155,87,0,0" VerticalAlignment="Top" Width="49"/>
-            <Label x:Name="passwordLabel" Content="Password:" HorizontalAlignment="Left" Margin="155,126,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" Margin="234,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
-            <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="23" Margin="234,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
-            <Button x:Name="loginButton" Content="LogIn" HorizontalAlignment="Left" Margin="234,174,0,0" VerticalAlignment="Top" Width="180" Background="BlueViolet" Foreground="White" Height="23" Click="loginButton_Click"/>
+        <Grid Height="268" Margin="10,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="590">
+            <Label x:Name="label" Content="Welcome on Forum ;)" HorizontalAlignment="Left" Margin="185,31,0,0" VerticalAlignment="Top" Width="204" FontSize="20"/>
+            <Label x:Name="loginLabel" Content="Login:" HorizontalAlignment="Left" Margin="113,87,0,0" VerticalAlignment="Top" Width="49"/>
+            <Label x:Name="passwordLabel" Content="Password:" HorizontalAlignment="Left" Margin="113,126,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" Margin="196,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+            <Button x:Name="loginButton" Content="LogIn" HorizontalAlignment="Left" Margin="196,174,0,0" VerticalAlignment="Top" Width="180" Background="BlueViolet" Foreground="White" Height="23" Click="loginButton_Click"/>
+            <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="196,129,0,0" VerticalAlignment="Top" Width="180" Height="23"/>
         </Grid>
 
     </Grid>

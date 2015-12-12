@@ -36,7 +36,8 @@ namespace Forum
       User user = db.User.Where(a => a.Login == login && a.Password == password).FirstOrDefault();
       if(user != null)
       {
-        MessageBox.Show("Logged");
+        new TopicsListWindow(db).Show();
+        Hide();
       } else
       {
         MessageBox.Show("You are not a member. Contact administrator to request permission.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);

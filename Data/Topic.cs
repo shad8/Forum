@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Data
 {
-    public class Thread
+    public class Topic
     {
       public long Id { get; set; }
       public string Title { get; set; }

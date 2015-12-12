@@ -51,7 +51,8 @@ namespace Forum
       {
         Topic topic = new Topic()
         {
-          Title = title
+          Title = title,
+          Date = DateTime.Today.Date
         };
         db.Topic.Add(topic);
         try

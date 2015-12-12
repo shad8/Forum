@@ -27,15 +27,45 @@ namespace Forum
     {
       InitializeComponent();
       db = content;
+      initGrid();
     }
 
 
-    private void Window_Loaded(object sender, RoutedEventArgs e)
+    private void initGrid()
     {
+      List<Topic> topics = db.Topic.ToList();
+      try
+      {
+        topicDataGrid.ItemsSource = topics;
+      }
+      catch (Exception exp)
+      {
+        MessageBox.Show(exp.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+      }
+    }
 
-      System.Windows.Data.CollectionViewSource topicViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("topicViewSource")));
-      // Load data by setting the CollectionViewSource.Source property:
-      // topicViewSource.Source = [generic data source]
+    private void addTopicButton_Click(object sender, RoutedEventArgs e)
+    {
+      string title = newTopicTextBox.Text;
+      if (title != null && title.Length > 3 )
+      {
+        Topic topic = new Topic()
+        {
+          Title = title
+        };
+        db.Topic.Add(topic);
+        try
+        {
+          db.SaveChanges();
+        }
+        catch (Exception exp)
+        {
+          MessageBox.Show(exp.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        topicDataGrid.ItemsSource = db.Topic.ToList();
+        topicDataGrid.Items.Refresh();
+        newTopicTextBox.Clear();
+      }
     }
   }
 }

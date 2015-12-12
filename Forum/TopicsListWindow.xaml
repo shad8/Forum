@@ -15,8 +15,8 @@
             <Label x:Name="topicLabel" Content="Topics:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="161" FontSize="20" FontWeight="SemiBold"/>
             <TextBox x:Name="newTopicTextBox" HorizontalAlignment="Left" Height="23" Margin="0,526,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="895"/>
             <Button x:Name="addTopicButton" Content="Add" HorizontalAlignment="Left" Margin="900,526,0,0" VerticalAlignment="Top" Width="89" Height="23"  Background="BlueViolet" Foreground="White" Click="addTopicButton_Click"/>
-            <Button x:Name="logOutButton" Content="LogOut" HorizontalAlignment="Left" Margin="914,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White"/>
-            <Button x:Name="UsersButton" Content="Users" HorizontalAlignment="Left" Margin="836,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White"/>
+            <Button x:Name="logOutButton" Content="LogOut" HorizontalAlignment="Left" Margin="914,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="logOutButton_Click"/>
+            <Button x:Name="usersButton" Content="Users" HorizontalAlignment="Left" Margin="836,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="usersButton_Click"/>
             <DataGrid x:Name="topicDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="0,52,10,38" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50"/>
@@ -30,6 +30,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <Button x:Name="deleteUsersButton" Content="Delete Selected" HorizontalAlignment="Left" Margin="730,10,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="deleteUsersButton_Click"/>
         </Grid>
 
     </Grid>

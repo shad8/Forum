@@ -33,15 +33,24 @@ namespace Forum
       string login = loginTextBox.Text;
       string password = passwordBox.Password;
 
-      User user = db.User.Where(a => a.Login == login && a.Password == password).FirstOrDefault();
-      if(user != null)
+      try
       {
-        db.Session.Add(new Session() { User = user });
-        new TopicsListWindow(db).Show();
-        Hide();
-      } else
+        User user = db.User.Where(a => a.Login == login && a.Password == password).FirstOrDefault();
+        if (user != null)
+        {
+          db.Session.Add(new Session() { User = user });
+          db.SaveChanges();
+          new TopicsListWindow(db).Show();
+          Close();
+        }
+        else
+        {
+          MessageBox.Show("You are not a member. Contact administrator to request permission.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+      }
+      catch (Exception exp)
       {
-        MessageBox.Show("You are not a member. Contact administrator to request permission.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(exp.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
       }
     }
   }

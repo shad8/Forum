@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Data;
 using System.Data;
+using System.Collections;
 
 namespace Forum
 {
@@ -22,15 +23,32 @@ namespace Forum
   public partial class TopicsListWindow : Window
   {
     ForumContext db;
+    User user;
 
     public TopicsListWindow(ForumContext content)
     {
       InitializeComponent();
       db = content;
+      user = db.Session.First().User;
       initGrid();
+      userSetting();
     }
 
+    private void userSetting()
+    {
+      if(user.Role == Role.User)
+      {
+        deleteUsersButton.Visibility = Visibility.Hidden;
+        topicDataGrid.IsReadOnly = true;
+        usersButton.Name = "Edit my topics";
+      }
+      else
+      {
+        topicDataGrid.IsReadOnly = false;
+      }
+    }
 
+   
     private void initGrid()
     {
       List<Topic> topics = db.Topic.ToList();
@@ -52,7 +70,8 @@ namespace Forum
         Topic topic = new Topic()
         {
           Title = title,
-          Date = DateTime.Today.Date
+          Date = DateTime.Today.Date,
+          User = user
         };
         db.Topic.Add(topic);
         try
@@ -63,10 +82,43 @@ namespace Forum
         {
           MessageBox.Show(exp.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        topicDataGrid.ItemsSource = db.Topic.ToList();
-        topicDataGrid.Items.Refresh();
+        updateDataGrid();
         newTopicTextBox.Clear();
       }
+    }
+
+    private void logOutButton_Click(object sender, RoutedEventArgs e)
+    {
+      db.Session.Remove(db.Session.First());
+      db.SaveChanges();
+      new LoginWindow(db).Show();
+      Close();
+    }
+
+    private void usersButton_Click(object sender, RoutedEventArgs e)
+    {
+      if(user.Role == Role.Admin)
+      {
+        // Add User edit
+      } else
+      {
+         // Add Edit topic for user
+      }
+    }
+
+    private void deleteUsersButton_Click(object sender, RoutedEventArgs e)
+    {
+      List<Topic> SelectedItemsList = topicDataGrid.SelectedItems.OfType<Topic>().ToList();
+      foreach (var item in SelectedItemsList)
+        db.Topic.Remove(item);
+      db.SaveChanges();
+      updateDataGrid();
+    }
+
+    private void updateDataGrid()
+    {
+      topicDataGrid.ItemsSource = db.Topic.ToList();
+      topicDataGrid.Items.Refresh();
     }
   }
 }

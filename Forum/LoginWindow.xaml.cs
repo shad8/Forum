@@ -36,6 +36,7 @@ namespace Forum
       User user = db.User.Where(a => a.Login == login && a.Password == password).FirstOrDefault();
       if(user != null)
       {
+        db.Session.Add(new Session() { User = user });
         new TopicsListWindow(db).Show();
         Hide();
       } else

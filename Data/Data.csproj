@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ForumContext.cs" />
     <Compile Include="ForumDBInitializer.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="Topic.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

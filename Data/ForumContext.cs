@@ -17,6 +17,6 @@ namespace Data
     public DbSet<User> User { get; set; }
     public DbSet<Message> Message { get; set; }
     public DbSet<Topic> Topic { get; set; }
-   
+    public DbSet<Session> Session { get; set; }
   }
 }

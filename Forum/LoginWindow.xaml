@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Forum"
         mc:Ignorable="d"
-        Title="Forum IT" Height="319.173" Width="590">
+        Title="Forum IT" Height="319.173" Width="590" ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>

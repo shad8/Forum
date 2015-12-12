@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Forum"
         xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="Forum.TopicsListWindow"
         mc:Ignorable="d"
-        Title="Forum IT Topics" Height="610.229" Width="1026.688" Loaded="Window_Loaded">
+        Title="Forum IT Topics" Height="610.229" Width="1026.688" Loaded="Window_Loaded" ResizeMode="CanMinimize">
     <Window.Resources>
         <CollectionViewSource x:Key="topicViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Topic}, CreateList=True}"/>
     </Window.Resources>

@@ -1,0 +1,40 @@
+[1mdiff --git a/Forum/Forum.csproj b/Forum/Forum.csproj[m
+[1mindex 38109de..70f330a 100644[m
+[1m--- a/Forum/Forum.csproj[m
+[1m+++ b/Forum/Forum.csproj[m
+[36m@@ -66,13 +66,24 @@[m
+       <Generator>MSBuild:Compile</Generator>[m
+       <SubType>Designer</SubType>[m
+     </ApplicationDefinition>[m
+[32m+[m[32m    <Compile Include="LogOuButton.xaml.cs" />[m
+[32m+[m[32m    <Compile Include="LogOutButtonControl.xaml.cs">[m
+[32m+[m[32m      <DependentUpon>LogOutButtonControl.xaml</DependentUpon>[m
+[32m+[m[32m    </Compile>[m
+     <Compile Include="TopicsListWindow.xaml.cs">[m
+       <DependentUpon>TopicsListWindow.xaml</DependentUpon>[m
+     </Compile>[m
+[32m+[m[32m    <Compile Include="UserListWindow.xaml.cs">[m
+[32m+[m[32m      <DependentUpon>UserListWindow.xaml</DependentUpon>[m
+[32m+[m[32m    </Compile>[m
+     <Page Include="LoginWindow.xaml">[m
+       <SubType>Designer</SubType>[m
+       <Generator>MSBuild:Compile</Generator>[m
+     </Page>[m
+[32m+[m[32m    <Page Include="LogOutButtonControl.xaml">[m
+[32m+[m[32m      <SubType>Designer</SubType>[m
+[32m+[m[32m      <Generator>MSBuild:Compile</Generator>[m
+[32m+[m[32m    </Page>[m
+     <Page Include="MainWindow.xaml">[m
+       <Generator>MSBuild:Compile</Generator>[m
+       <SubType>Designer</SubType>[m
+[36m@@ -92,6 +103,10 @@[m
+       <SubType>Designer</SubType>[m
+       <Generator>MSBuild:Compile</Generator>[m
+     </Page>[m
+[32m+[m[32m    <Page Include="UserListWindow.xaml">[m
+[32m+[m[32m      <SubType>Designer</SubType>[m
+[32m+[m[32m      <Generator>MSBuild:Compile</Generator>[m
+[32m+[m[32m    </Page>[m
+   </ItemGroup>[m
+   <ItemGroup>[m
+     <Compile Include="Properties\AssemblyInfo.cs">[m

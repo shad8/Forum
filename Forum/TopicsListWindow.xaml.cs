@@ -40,6 +40,7 @@ namespace Forum
       {
         deleteUsersButton.Visibility = Visibility.Hidden;
         topicDataGrid.IsReadOnly = true;
+        
         usersButton.Name = "Edit my topics";
       }
       else
@@ -47,8 +48,7 @@ namespace Forum
         topicDataGrid.IsReadOnly = false;
       }
     }
-
-   
+       
     private void initGrid()
     {
       List<Topic> topics = db.Topic.ToList();
@@ -97,12 +97,21 @@ namespace Forum
 
     private void usersButton_Click(object sender, RoutedEventArgs e)
     {
-      if(user.Role == Role.Admin)
+      if (user.Role == Role.Admin)
       {
-        // Add User edit
-      } else
+        new UserListWindow(db).Show();
+      }
+      else
       {
-         // Add Edit topic for user
+        List<Topic> topics = db.Topic.Where(x => x.User.Id == user.Id).ToList();
+        try
+        {
+          topicDataGrid.ItemsSource = topics;
+        }
+        catch (Exception exp)
+        {
+          MessageBox.Show(exp.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
       }
     }
 

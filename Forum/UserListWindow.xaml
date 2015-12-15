@@ -1,0 +1,40 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Forum"
+        xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="Forum.UserListWindow"
+        mc:Ignorable="d"
+        Title="Forum IT Ussers" Height="610.229" Width="1026.688" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <CollectionViewSource x:Key="userViewSource1" d:DesignSource="{d:DesignInstance {x:Type Data:User}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="559" Margin="12,10,0,0" VerticalAlignment="Top" Width="999">
+            <Label x:Name="userLabel" Content="Users:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="161" FontSize="20" FontWeight="SemiBold"/>
+            <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="25" Margin="656,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="333"/>
+            <Button x:Name="addUserButton" Content="Add" HorizontalAlignment="Left" Margin="656,286,0,0" VerticalAlignment="Top" Width="101" Height="23"  Background="BlueViolet" Foreground="White" Click="addUserButton_Click"/>
+            <Button x:Name="logOutButton" Content="LogOut" HorizontalAlignment="Left" Margin="914,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="logOutButton_Click"/>
+
+            <Button x:Name="deleteUsersButton" Content="Delete Selected" HorizontalAlignment="Left" Margin="808,10,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="deleteUsersButton_Click"/>
+            <DataGrid x:Name="userDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,52,363,10" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50"/>
+                    <DataGridTextColumn x:Name="loginColumn" Binding="{Binding Login}" Header="Login" Width="250"/>
+                    <DataGridTextColumn x:Name="passwordColumn" Binding="{Binding Password}" Header="Password" Width="250"/>
+                    <DataGridTextColumn x:Name="roleColumn" Binding="{Binding Role}" Header="Role" Width="50"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <ComboBox x:Name="roleComboBox" HorizontalAlignment="Left" Margin="657,238,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="0">
+                <ComboBoxItem Content="user"></ComboBoxItem>
+                <ComboBoxItem Content="admin"></ComboBoxItem>
+            </ComboBox>
+            <Label x:Name="loginLabel" Content="Login" HorizontalAlignment="Left" Margin="656,77,0,0" VerticalAlignment="Top" Width="176"/>
+            <Label x:Name="passwordLabel" Content="Password:" HorizontalAlignment="Left" Margin="656,138,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="25" Margin="656,169,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="333"/>
+            <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="656,207,0,0" VerticalAlignment="Top" Width="101"/>
+        </Grid>
+
+    </Grid>
+</Window>

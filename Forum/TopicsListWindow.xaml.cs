@@ -41,7 +41,7 @@ namespace Forum
         deleteUsersButton.Visibility = Visibility.Hidden;
         topicDataGrid.IsReadOnly = true;
         
-        usersButton.Name = "Edit my topics";
+        //usersButton.Name = "Edit my topics";
       }
       else
       {

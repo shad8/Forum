@@ -1,0 +1,39 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Forum"
+        xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="Forum.TopicsListWindow"
+        mc:Ignorable="d"
+        Title="Forum IT Topics" Height="610.229" Width="1026.688" ResizeMode="CanMinimize" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="topicViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Topic}, CreateList=True}"/>
+        <CollectionViewSource x:Key="postViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Post}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="559" Margin="12,10,0,0" VerticalAlignment="Top" Width="999" DataContext="{StaticResource topicViewSource}">
+            <Label x:Name="topicLabel" Content="Topics:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="161" FontSize="20" FontWeight="SemiBold"/>
+            <TextBox x:Name="newTopicTextBox" HorizontalAlignment="Left" Height="23" Margin="0,526,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="895"/>
+            <Button x:Name="addTopicButton" Content="Add" HorizontalAlignment="Left" Margin="900,526,0,0" VerticalAlignment="Top" Width="89" Height="23"  Background="BlueViolet" Foreground="White" Click="addTopicButton_Click"/>
+            <Button x:Name="logOutButton" Content="LogOut" HorizontalAlignment="Left" Margin="914,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="logOutButton_Click"/>
+            <Button x:Name="usersButton" Content="Users" HorizontalAlignment="Left" Margin="836,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="usersButton_Click"/>
+            <Button x:Name="deleteUsersButton" Content="Delete Selected" HorizontalAlignment="Left" Margin="730,10,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.013,0.6" Background="BlueViolet" Foreground="White" Click="deleteUsersButton_Click"/>
+            <DataGrid x:Name="postDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="0,52,10,38" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="bodyColumn" Binding="{Binding Body}" Header="Body" Width="SizeToHeader"/>
+                    <DataGridTemplateColumn x:Name="dateColumn" Header="Date" Width="SizeToHeader">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="titleColumn" Binding="{Binding Title}" Header="Title" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Data;
+using System.Data.Entity.Validation;
 
 namespace Forum
 {
@@ -47,9 +48,9 @@ namespace Forum
     {
       string login = loginTextBox.Text;
       string password = passwordTextBox.Text;
-      Role role = roleComboBox.SelectedItem.ToString() == "user" ? Role.User : Role.Admin;
+      Role role =  roleComboBox.Text == "user" ? Role.User : Role.Admin;
 
-      if (login != null && password != null)
+      try
       {
         User user = new User()
         {
@@ -59,17 +60,22 @@ namespace Forum
         };
 
         db.User.Add(user);
-        try
-        {
-          db.SaveChanges();
-        }
-        catch (Exception exp)
-        {
-          MessageBox.Show(exp.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+        db.SaveChanges();
+
         updateDataGrid();
         loginTextBox.Clear();
         passwordTextBox.Clear();
+      }
+      catch (DbEntityValidationException exp)
+      {
+       var errorMessages = exp.EntityValidationErrors.SelectMany(x => x.ValidationErrors).Select(x => x.ErrorMessage);
+       var fullErrorMessage = string.Join("\n", errorMessages);
+       var exceptionMessage = string.Concat("Validation errors:\n", fullErrorMessage);
+       MessageBox.Show(exceptionMessage.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+      }
+      catch (Exception exp)
+      {
+        MessageBox.Show(exp.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
       }
     }
 
@@ -91,8 +97,19 @@ namespace Forum
     {
       List<User> SelectedItemsList = userDataGrid.SelectedItems.OfType<User>().ToList();
       foreach (var item in SelectedItemsList)
-        db.User.Remove(item);
-      db.SaveChanges();
+      {
+        var topic_exist = db.Topic.Any(a => a.User.Id == item.Id);
+        var message_exist = db.Message.Any(a => a.User.Id == item.Id);
+        if (topic_exist || message_exist)
+        {
+          string msg = "You can not delete the user. The user is the author of post or topics";
+          MessageBox.Show(msg, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        } else
+        {
+          db.User.Remove(item);
+          db.SaveChanges();
+        }
+      }
       updateDataGrid();
     }
   }
